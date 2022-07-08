@@ -1,0 +1,29 @@
+{
+  "name": "Team-Info-Matic",
+  "version": "1.0.0",
+  "description": "Employee Directory",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "src": "src"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PGCranford/Team-Info-Matic"
+  },
+  "author": "Patrick Cranford",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PGCranford/Team-Info-Matic/issues"
+  },
+  "homepage": "",
+  "devDependencies": {
+    "jest": "^28.1.2"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
