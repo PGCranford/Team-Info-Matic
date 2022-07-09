@@ -71,7 +71,11 @@ const manager = managerRole => {
         ])
         .then(({ nameM, empIDM, emailM, officeNum }) => {
             this.Manager = new Manager(nameM, empIDM, emailM, officeNum);
+            return `
+ 
+insert html here? 
 
+`
         })
 };
 
@@ -155,6 +159,7 @@ const otherRole = roleInput => {
                     .then(({ nameE, empIDE, emailE, gitHubName }) => {
                         this.Engineer = new Engineer(nameE, empIDE, emailE, gitHubName);
                     })
+
                     .then(otherRole)
 
             }
@@ -249,6 +254,11 @@ manager()
 
     .then(otherRole)
     .then(managerRole => {
+        const deployPage = createPage(managerRole);
+        document.open();
+        document.write(indexedDB);
+        document.close();
+
 
     })
 
