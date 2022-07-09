@@ -4,7 +4,7 @@ const inquirer = require('inquirer');
 
 
 
-const manager = () => {
+const Manager = () => {
 
     return inquirer
         .prompt([
@@ -24,6 +24,21 @@ const manager = () => {
             },
             {
                 type: "input",
+                name: "empID",
+                message: "What is your manager's employee ID?",
+                validate: (managerID) => {
+                    if (managerID) {
+                        return true;
+                    }
+                    else {
+                        console.log("Please enter your manager's ");
+                        return false;
+                    }
+                }
+            },
+
+            {
+                type: "input",
                 name: "email",
                 message: "What is your manager's email address?",
                 validate: (managerEmail) => {
@@ -38,7 +53,7 @@ const manager = () => {
             },
             {
                 type: "input",
-                name: "office ",
+                name: "officeNum ",
                 message: "What is your office number?",
                 validate: (managerOffice) => {
                     if (managerOffice) {
@@ -86,8 +101,8 @@ function otherRole() {
 
                         }
 
-
                     ])
+                    .then(otherRole)
 
             }
             else if (Role === 'intern') {
@@ -112,6 +127,22 @@ function otherRole() {
                         }
 
                     ])
+                    .then(otherRole)
+
+            }
+            else if (Role === 'no') {
+                createPage(() => {
+                    const createPage = deployHTML(manager, otherRole);
+
+                    fs.writeFile('index.html', pageHtml, err => {
+                        if (err) throw new Error(err);
+                        console.log("HTML was created!");
+                    });
+
+                }
+                )
+
+
             }
 
         });
@@ -120,74 +151,7 @@ function otherRole() {
 
 };
 
-// function engineerData(Role) {
-//     if (Role === 'engineer') {
 
-//         return inquirer
-
-//             .prompt([
-
-//                 {
-//                     type: "input",
-//                     name: "gitHubName",
-//                     message: "Enter the Git Hub username of your engineer.",
-//                     validate: (githubInput) => {
-//                         if (githubInput) {
-//                             return true;
-//                         }
-//                         else {
-//                             console.log("Enter a Git Hub username")
-//                             return false;
-//                         }
-//                     }
-
-//                 }
-
-
-//             ])
-
-
-//     };
-// }
-
-// function intern() {
-
-//     return inquirer
-//         .prompt([
-//             {
-//                 type: "list",
-//                 name: "internRole",
-//                 message: "Do you want to include an intern on your team?",
-//                 choices: ['Yes', 'No'],
-//                 validate: ({ choices }) => choices
-//             }
-//         ])
-// };
-
-// function internData() {
-
-//     return inquirer
-//         .prompt([
-
-//             {
-//                 type: "input",
-//                 name: "school",
-//                 message: "What school is your intern attending?",
-//                 validate: (schoolInput) => {
-//                     if (schoolInput) {
-//                         return true;
-//                     }
-//                     else {
-//                         console.log("Please enter your intern's school");
-//                         return false;
-//                     }
-//                 }
-
-
-//             }
-
-//         ])
-// }
 
 
 
