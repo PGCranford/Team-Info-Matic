@@ -3,13 +3,13 @@ const Employee = require('../lib/Employee.js');
 
 test('creates Employee object', () => {
 
-    const manager = new manager('Ned', 64, 'ned@nedcentral.com', 8);
+    const Employee = new Employee('Ned', 64, 'ned@nedcentral.com', 8);
 
-    expect(role(manager)).toBe('object')
-    expect(manager.name).toEqual(expect.any(String))
-    expect(manager.empID).toEqual(expect.any(Number))
-    expect(manager.email).toEqual(expect.any(String))
-    expect(manager.officeNum).toEqual(expect.any(Number))
+    expect(role(Employee)).toBe('object')
+    expect(Employee.name).toEqual(expect.any(String))
+    expect(Employee.empID).toEqual(expect.any(Number))
+    expect(Employee.email).toEqual(expect.any(String))
+    expect(Employee.officeNum).toEqual(expect.any(Number))
 
 });
 

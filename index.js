@@ -1,16 +1,19 @@
 
 const fs = require('fs');
 const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Intern = require('./lib/Intern');
+const Engineer = require('./lib/Engineer')
 
 
 
-const Manager = () => {
+const manager = () => {
 
     return inquirer
         .prompt([
             {
                 type: "input",
-                name: "name",
+                name: "nameM",
                 message: "What is your manager's name?",
                 validate: (managerInput) => {
                     if (managerInput) {
@@ -24,14 +27,14 @@ const Manager = () => {
             },
             {
                 type: "input",
-                name: "empID",
+                name: "empIDM",
                 message: "What is your manager's employee ID?",
                 validate: (managerID) => {
                     if (managerID) {
                         return true;
                     }
                     else {
-                        console.log("Please enter your manager's ");
+                        console.log("Please enter an ID number");
                         return false;
                     }
                 }
@@ -39,14 +42,14 @@ const Manager = () => {
 
             {
                 type: "input",
-                name: "email",
+                name: "emailM",
                 message: "What is your manager's email address?",
                 validate: (managerEmail) => {
                     if (managerEmail) {
                         return true;
                     }
                     else {
-                        console.log("Please enter your manager's email");
+                        console.log("Please an email");
                         return false;
                     }
                 }
@@ -54,21 +57,24 @@ const Manager = () => {
             {
                 type: "input",
                 name: "officeNum ",
-                message: "What is your office number?",
+                message: "What is your  manager's office number?",
                 validate: (managerOffice) => {
                     if (managerOffice) {
                         return true;
                     }
                     else {
-                        console.log("Please enter your office number");
+                        console.log("Please enter an office number");
                         return false;
                     }
                 }
-            }
+            },
         ])
+        .then(({ nameM, empIDM, emailM, officeNum }) => {
+            this.Manager = new Manager(nameM, empIDM, emailM, officeNum);
+        })
 };
 
-function otherRole() {
+const otherRole = () => {
 
     return inquirer
         .prompt([
@@ -84,6 +90,49 @@ function otherRole() {
                 return inquirer
 
                     .prompt([
+                        {
+                            type: "input",
+                            name: "nameE",
+                            message: "What is your engineer's name?",
+                            validate: (engineerInput) => {
+                                if (engineerInput) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Please enter a name");
+                                    return false;
+                                }
+                            }
+                        },
+                        {
+                            type: "input",
+                            name: "empIDE",
+                            message: "What is your engineer's employee ID?",
+                            validate: (engineerID) => {
+                                if (engineerID) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Please enter an ID number");
+                                    return false;
+                                }
+                            }
+                        },
+
+                        {
+                            type: "input",
+                            name: "emailE",
+                            message: "What is your engineer's email address?",
+                            validate: (engineerEmail) => {
+                                if (engineerEmail) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Please an email");
+                                    return false;
+                                }
+                            }
+                        },
 
                         {
                             type: "input",
@@ -102,13 +151,59 @@ function otherRole() {
                         }
 
                     ])
+                    .then(({ nameE, empIDE, emailE, gitHubName }) => {
+                        this.Engineer = new Engineer(nameE, empIDE, emailE, gitHubName);
+                    })
                     .then(otherRole)
 
             }
             else if (Role === 'intern') {
+
                 return inquirer
                     .prompt([
+                        {
+                            type: "input",
+                            name: "nameI",
+                            message: "What is your intern's name?",
+                            validate: (internInput) => {
+                                if (internInput) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Please enter a name");
+                                    return false;
+                                }
+                            }
+                        },
+                        {
+                            type: "input",
+                            name: "empIDI",
+                            message: "What is your intern's employee ID?",
+                            validate: (internID) => {
+                                if (internID) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Please enter an ID number");
+                                    return false;
+                                }
+                            }
+                        },
 
+                        {
+                            type: "input",
+                            name: "emailI",
+                            message: "What is your intern's email address?",
+                            validate: (internEmail) => {
+                                if (internEmail) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Please an email");
+                                    return false;
+                                }
+                            }
+                        },
                         {
                             type: "input",
                             name: "school",
@@ -122,12 +217,16 @@ function otherRole() {
                                     return false;
                                 }
                             }
-
-
-                        }
+                        },
 
                     ])
+
+                    .then(({ nameI, empIDI, emailI, school }) => {
+                        this.Intern = new Intern(nameI, empIDI, emailI, school);
+                    })
+
                     .then(otherRole)
+
 
             }
             else if (Role === 'no') {
@@ -151,18 +250,12 @@ function otherRole() {
 
 };
 
-
-
-
-
-
-
-
 manager()
-    .then(managerData => {
-        let manager = (managerData.name, managerData.email, managerData.office)
-        return manager
-    })
+    // .then(managerData => {
+    //     letmanager = (managerData.nameM, manager.empIDM, manager.emailM, manager.officeNum)
+    //     return manager
+    // })
+
 
     .then(otherRole)
 
