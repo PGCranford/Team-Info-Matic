@@ -4,10 +4,11 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer')
+const createPage = require('./createPage')
 
 
 
-const manager = () => {
+const manager = managerRole => {
 
     return inquirer
         .prompt([
@@ -15,8 +16,8 @@ const manager = () => {
                 type: "input",
                 name: "nameM",
                 message: "What is your manager's name?",
-                validate: (managerInput) => {
-                    if (managerInput) {
+                validate: (managerName) => {
+                    if (managerName) {
                         return true;
                     }
                     else {
@@ -39,7 +40,6 @@ const manager = () => {
                     }
                 }
             },
-
             {
                 type: "input",
                 name: "emailM",
@@ -71,10 +71,11 @@ const manager = () => {
         ])
         .then(({ nameM, empIDM, emailM, officeNum }) => {
             this.Manager = new Manager(nameM, empIDM, emailM, officeNum);
+
         })
 };
 
-const otherRole = () => {
+const otherRole = roleInput => {
 
     return inquirer
         .prompt([
@@ -230,25 +231,14 @@ const otherRole = () => {
 
             }
             else if (Role === 'no') {
-                createPage(() => {
-                    const createPage = deployHTML(manager, otherRole);
-
-                    fs.writeFile('index.html', pageHtml, err => {
-                        if (err) throw new Error(err);
-                        console.log("HTML was created!");
-                    });
-
-                }
-                )
-
+                return
 
             }
-
         });
 
 
-
 };
+
 
 manager()
     // .then(managerData => {
@@ -258,4 +248,7 @@ manager()
 
 
     .then(otherRole)
+    .then(managerRole => {
+
+    })
 
