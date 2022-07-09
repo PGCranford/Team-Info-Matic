@@ -1,6 +1,7 @@
-const { validate } = require('@babel/types');
+
 const fs = require('fs');
 const inquirer = require('inquirer');
+
 
 
 const manager = () => {
@@ -52,59 +53,143 @@ const manager = () => {
         ])
 };
 
-function engineer() {
+function otherRole() {
 
     return inquirer
         .prompt([
             {
                 type: "list",
-                name: "engineerRole",
-                message: "Do you want to include an engineer on your team?",
-                choices: ['Yes', 'No'],
-                validate: ({ choices }) => choices
+                name: "Role",
+                message: "Do you want to include an engineer or an intern on your team?",
+                choices: ['engineer', 'intern', 'no'],
             }
         ])
+        .then(({ Role }) => {
+            if (Role === 'engineer') {
+                return inquirer
+
+                    .prompt([
+
+                        {
+                            type: "input",
+                            name: "gitHubName",
+                            message: "Enter the Git Hub username of your engineer.",
+                            validate: (githubInput) => {
+                                if (githubInput) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Enter a Git Hub username")
+                                    return false;
+                                }
+                            }
+
+                        }
+
+
+                    ])
+
+            }
+            else if (Role === 'intern') {
+                return inquirer
+                    .prompt([
+
+                        {
+                            type: "input",
+                            name: "school",
+                            message: "What school is your intern attending?",
+                            validate: (schoolInput) => {
+                                if (schoolInput) {
+                                    return true;
+                                }
+                                else {
+                                    console.log("Please enter your intern's school");
+                                    return false;
+                                }
+                            }
+
+
+                        }
+
+                    ])
+            }
+
+        });
+
+
+
 };
 
-function engineerData(engineerRole) {
-    if (engineerRole === 'Yes') {
-        return inquirer
+// function engineerData(Role) {
+//     if (Role === 'engineer') {
 
-            .prompt([
+//         return inquirer
 
-                {
-                    type: "input",
-                    name: "name",
-                    message: "What is your  engineer's name?",
-                    validate: (nameInput) => {
-                        if (nameInput) {
-                            return true;
-                        }
-                        else {
-                            console.log("Please enter your  engineer's name");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    type: "input",
-                    name: "email",
-                    message: "What is your email engineer's adrress ?",
-                    validate: (emailInput) => {
-                        if (emailInput) {
-                            return true;
-                        }
-                        else {
-                            console.log("Please enter your engineer's email");
-                            return false;
-                        }
-                    }
-                },
+//             .prompt([
+
+//                 {
+//                     type: "input",
+//                     name: "gitHubName",
+//                     message: "Enter the Git Hub username of your engineer.",
+//                     validate: (githubInput) => {
+//                         if (githubInput) {
+//                             return true;
+//                         }
+//                         else {
+//                             console.log("Enter a Git Hub username")
+//                             return false;
+//                         }
+//                     }
+
+//                 }
 
 
-            ])
-    }
-};
+//             ])
+
+
+//     };
+// }
+
+// function intern() {
+
+//     return inquirer
+//         .prompt([
+//             {
+//                 type: "list",
+//                 name: "internRole",
+//                 message: "Do you want to include an intern on your team?",
+//                 choices: ['Yes', 'No'],
+//                 validate: ({ choices }) => choices
+//             }
+//         ])
+// };
+
+// function internData() {
+
+//     return inquirer
+//         .prompt([
+
+//             {
+//                 type: "input",
+//                 name: "school",
+//                 message: "What school is your intern attending?",
+//                 validate: (schoolInput) => {
+//                     if (schoolInput) {
+//                         return true;
+//                     }
+//                     else {
+//                         console.log("Please enter your intern's school");
+//                         return false;
+//                     }
+//                 }
+
+
+//             }
+
+//         ])
+// }
+
+
 
 
 
@@ -115,6 +200,5 @@ manager()
         return manager
     })
 
-    .then(engineer)
-    .then(engineerData)
+    .then(otherRole)
 
