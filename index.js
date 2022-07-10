@@ -9,7 +9,7 @@ const createPage = require('./src/htmltemplate');
 
 
 
-const manager = managerRole => {
+const manager = () => {
 
     return inquirer
         .prompt([
@@ -80,7 +80,7 @@ insert html here?
         })
 };
 
-const otherRole = roleInput => {
+const otherRole = () => {
 
     return inquirer
         .prompt([
@@ -264,11 +264,6 @@ manager()
 
 
 
-        // managerRole => {
-        // const deployPage = createPage(managerRole);
-        // document.open();
-        // document.write(indexedDB);
-        // document.close();
 
 
 

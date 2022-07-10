@@ -42,7 +42,7 @@ const createPage = (manager, otherRole) => {
             <h2 class="card-tile"> ${otherRole.name} </h2>
             <h3 id="Role">role </h3>
             <h4 id="empID">ID</h4>
-            <a href="#" class="card-link">${manager.email}</a>
+            <a href="#" class="card-link">${otherRole.email}</a>
             <h4 id="officeNumber"> 88</h4>
             <h4 id="empGitHub"></h4>
             <h4 id="empSchool"></h4>
