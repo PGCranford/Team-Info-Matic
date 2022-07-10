@@ -1,11 +1,12 @@
 //const Manager = require("../lib/Manager");
 
+
 const createPage = (employees) => {
     const cards = employees.map((employee) => {
         return ` <div class="card" style="width:13rem" class="tile1">
         <div class="card-body">
             <h3 class="card-tile">Name: ${employee.name} </h3>
-             <h3 id="Role">${""} </h3>
+             <h3 id="Role">${employee.role} </h3>
             <h4 id="empID">ID:${employee.empID}</h4>
             <a href="#" class="card-link">${employee.email}</a>
             <h4 id="officeNumber">${employee.office || ""}</h4>
@@ -34,7 +35,7 @@ const createPage = (employees) => {
     <div class="col p-3 mb-2 bg-warning text-dark">
         <header>
 
-            <div class="col text-center" style="height: 200px"> Here's Your Team
+            <div class="col text-center fs-1" style="height: 200px"> Here's Your Team
             </div>
 
         </header>
