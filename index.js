@@ -59,7 +59,7 @@ const manager = () => {
             },
             {
                 type: "input",
-                name: "officeNum ",
+                name: "office",
                 message: "What is your  manager's office number?",
                 validate: (managerOffice) => {
                     if (managerOffice) {
@@ -72,8 +72,8 @@ const manager = () => {
                 }
             },
         ])
-        .then(({ nameM, empIDM, emailM, officeNum }) => {
-            return new Manager(nameM, empIDM, emailM, officeNum);
+        .then(({ nameM, empIDM, emailM, office }) => {
+            return new Manager(nameM, empIDM, emailM, office);
 
 
 
