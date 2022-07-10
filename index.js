@@ -6,6 +6,8 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer')
 const createPage = require('./src/htmltemplate');
 
+const employees = []
+
 
 
 
@@ -71,12 +73,10 @@ const manager = () => {
             },
         ])
         .then(({ nameM, empIDM, emailM, officeNum }) => {
-            this.Manager = new Manager(nameM, empIDM, emailM, officeNum);
-            return `
- 
-insert html here? 
+            return new Manager(nameM, empIDM, emailM, officeNum);
 
-`
+
+
         })
 };
 
@@ -158,7 +158,7 @@ const otherRole = () => {
 
                     ])
                     .then(({ nameE, empIDE, emailE, gitHubName }) => {
-                        this.Engineer = new Engineer(nameE, empIDE, emailE, gitHubName);
+                        employees.push(new Engineer(nameE, empIDE, emailE, gitHubName));
                     })
 
                     .then(otherRole)
@@ -229,7 +229,7 @@ const otherRole = () => {
                     ])
 
                     .then(({ nameI, empIDI, emailI, school }) => {
-                        this.Intern = new Intern(nameI, empIDI, emailI, school);
+                        employees.push(new Intern(nameI, empIDI, emailI, school));
                     })
 
                     .then(otherRole)
@@ -247,15 +247,18 @@ const otherRole = () => {
 
 
 manager()
-    .then(managerData => {
-        manager1 = new Manager(managerData.nameM, manager.empIDM, manager.emailM, manager.officeNum)
+    .then(manager => {
+        employees.push(manager)
+
+
+        // manager = new Manager(managerData.nameM, managerData.empIDM, managerData.emailM, managerData.officeNum)
 
     })
     .then(otherRole)
     .then(() => {
-        const pageHtML = createPage(manager, otherRole);
+        const pageHtML = createPage(employees);
 
-        fs.writeFile('index.html', pageHtML, err => {
+        fs.writeFile('indexNew.html', pageHtML, err => {
             if (err) throw new Error(err);
             console.log("Html was created")
 

@@ -1,20 +1,4 @@
 
-const createPage = (employees) => {
-    const cards = employees.map((employee) => {
-        return ` <div class="card" style="width:13rem" class="tile1">
-        <div class="card-body">
-            <h2 class="card-tile">Name: ${employee.name} </h2>
-             <h3 id="Role">${""} </h3>
-            <h4 id="empID">${employee.empID}</h4>
-            <a href="#" class="card-link">Email:${employee.email}</a>
-            <h4 id="officeNumber">Office Number:${employee.officeNum}</h4>
-            <h4 id="empGitHub">${employee.gitHubName || ""}</h4>
-            <h4 id="empSchool">${employee.school || ""}</h4>
-        </div>
-    </div>`
-
-    })
-    return `
     <!DOCTYPE html>
 <html lang="en">
 
@@ -39,15 +23,19 @@ const createPage = (employees) => {
         </header>
 
         </div> <div class="d-flex flex-wrap justify-content-between" class="backgroundMain">
-    ${cards}
+     <div class="card" style="width:13rem" class="tile1">
+        <div class="card-body">
+            <h2 class="card-tile">Name: gus </h2>
+             <h3 id="Role"> </h3>
+            <h4 id="empID">gusID</h4>
+            <a href="#" class="card-link">Email:gus@test.com</a>
+            <h4 id="officeNumber">Office Number:undefined</h4>
+            <h4 id="empGitHub"></h4>
+            <h4 id="empSchool"></h4>
+        </div>
+    </div>
    </div>
 </body>
 
     
-    `;
-
-
-
-}
-
-module.exports = createPage;
+    
