@@ -4,7 +4,8 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer')
-const createPage = require('./createPage')
+const createPage = require('./src/htmltemplate');
+
 
 
 
@@ -246,19 +247,28 @@ const otherRole = roleInput => {
 
 
 manager()
-    // .then(managerData => {
-    //     letmanager = (managerData.nameM, manager.empIDM, manager.emailM, manager.officeNum)
-    //     return manager
-    // })
-
-
-    .then(otherRole)
-    .then(managerRole => {
-        const deployPage = createPage(managerRole);
-        document.open();
-        document.write(indexedDB);
-        document.close();
-
+    .then(managerData => {
+        manager1 = new Manager(managerData.nameM, manager.empIDM, manager.emailM, manager.officeNum)
 
     })
+    .then(otherRole)
+    .then(() => {
+        const pageHtML = createPage(manager, otherRole);
+
+        fs.writeFile('index.html', pageHtML, err => {
+            if (err) throw new Error(err);
+            console.log("Html was created")
+
+        });
+    })
+
+
+
+        // managerRole => {
+        // const deployPage = createPage(managerRole);
+        // document.open();
+        // document.write(indexedDB);
+        // document.close();
+
+
 

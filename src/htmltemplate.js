@@ -1,0 +1,60 @@
+
+const createPage = (manager, otherRole) => {
+    return `
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="jquery-3.6.0.min.js"></script>
+    <title>Team Information</title>
+</head>
+
+<body>
+    <div class="col p-3 mb-2 bg-warning text-dark">
+        <header>
+
+            <div class="col text-center" style="height: 200px"> Here's Your Team
+            </div>
+
+        </header>
+
+
+    </div> <div class="d-flex flex-wrap justify-content-between" class="backgroundMain">
+    <div class="card" style="width:13rem" class="tile1">
+        <div class="card-body">
+            <h2 class="card-tile"> ${manager.nameM} </h2>
+            <h3 id="Role">role </h3>
+            <h4 id="empID">ID</h4>
+            <a href="#" class="card-link">${manager.email}</a>
+            <h4 id="officeNumber"> 88</h4>
+            <h4 id="empGitHub"></h4>
+            <h4 id="empSchool"></h4>
+        </div>
+    </div>
+    <div class="card" style="width:13rem" class="tile1">
+        <div class="card-body">
+            <h2 class="card-tile"> ${otherRole.name} </h2>
+            <h3 id="Role">role </h3>
+            <h4 id="empID">ID</h4>
+            <a href="#" class="card-link">${manager.email}</a>
+            <h4 id="officeNumber"> 88</h4>
+            <h4 id="empGitHub"></h4>
+            <h4 id="empSchool"></h4>
+        </div>
+    </div>
+</body>
+
+    
+    `;
+
+
+
+}
+
+module.exports = createPage;
